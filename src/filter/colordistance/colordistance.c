@@ -109,11 +109,16 @@ void f0r_get_param_value(f0r_instance_t instance,
 
 }
 
+#ifndef HAVE_RINT
 #if defined(_MSC_VER)
-__inline const int rint(float x){
+__inline
+#else
+inline
+#endif
+const int rint(float x){
 	return (int)(x+0.5);
 }
-#endif
+#endif /* HAVE_RINT */
 
 void f0r_update(f0r_instance_t instance, double time,
 		const uint32_t* inframe, uint32_t* outframe)

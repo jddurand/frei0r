@@ -75,11 +75,16 @@ void f0r_get_param_value(f0r_instance_t instance,
 			 f0r_param_t param, int param_index)
 { /* no params */ }
 
+#ifndef HAVE_LRINTF
 #if defined(_MSC_VER)
-__inline const long int lrintf(float x){
+__inline
+#else
+inline
+#endif
+const long int lrintf(float x){
 	return (long int)(x+0.5);
 }
-#endif /* _MSC_VER */
+#endif /* HAVE_LRINTF */
 
 void f0r_update2(f0r_instance_t instance,
 		 double time,

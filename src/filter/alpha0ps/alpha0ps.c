@@ -41,6 +41,7 @@ Copyright (C) 2010  Marko Cebokli    http://lea.hamradio.si/~s57uuu
 
 
 #include "fibe_f.h"
+#include "frei0r_math.h"
 
 
 //----------------------------------------
@@ -384,7 +385,7 @@ float AitNev3(int t, float xt[], float yt[], float x)
 	if ((x<xt[0])||(x>xt[t-1]))
 	{
 		//	printf("\n\n x=%f je izven mej tabele!",x);
-		return 1.0/0.0;
+		return FREI0R_INF;
 	}
 	
 	//poisce, katere tocke bo uporabil

@@ -71,4 +71,15 @@ uint8_t MAX255(uint32_t a) { return (uint8_t) (a | ((a & 256) - ((a & 256) >> 8)
 #define MAX(x, y)  ((x) > (y) ? (x) : (y))
 #endif
 
+#include <math.h>
+#ifdef HAVE_C_INFINITY
+#define FREI0R_INF INFINITY
+#else
+#  ifdef HAVE_INFINITY_REPLACEMENT
+#    define FREI0R_INF (__builtin_inff())
+#  else
+#    define FREI0R_INF (1.0 / 0.0)
+#  endif
+#endif
+
 #endif

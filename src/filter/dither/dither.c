@@ -253,7 +253,11 @@ void f0r_update(f0r_instance_t instance, double time,
   // init look-ups
 	int rows, cols;
   rows = cols = (int)sqrt(matrixLength);
+#ifdef SUPPORT_VLA
   int map[levels];
+#else
+  int *map = (int *) malloc(levels * sizeof(int));
+#endif
   int i,v;
 	for (i = 0; i < levels; i++)
   {
@@ -297,6 +301,10 @@ void f0r_update(f0r_instance_t instance, double time,
         *dst++ = *src++;//copy alpha
       }
   }
+
+#ifndef SUPPORT_VLA
+  free(map);
+#endif
 }
 
 

@@ -84,7 +84,7 @@ float AitNev3(int t, float xt[], float yt[], float x)
     if ((x<xt[0])||(x>xt[t-1]))
     {
         //	printf("\n\n x=%f je izven mej tabele!",x);
-        return 1.0/0.0;
+        return FREI0R_INF;
     }
 
     //poisce, katere tocke bo uporabil

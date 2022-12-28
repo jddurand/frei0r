@@ -1,10 +1,8 @@
-cmake_minimum_required (VERSION 2.8)
+cmake_minimum_required (VERSION 3.21)
+project (frei0r VERSION 1.8 LANGUAGES C CXX)
 include(GNUInstallDirs)
 
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
-
-project (frei0r)
-set (VERSION 1.8)
 
 option (WITHOUT_OPENCV "Disable plugins dependent upon OpenCV" OFF)
 if (NOT WITHOUT_OPENCV)

@@ -135,7 +135,11 @@ public:
              * and therefore get the number (line1+line2)/2, here 6.5.
              * This positions will later be used for interpolation.
              */
+#ifdef SUPPORT_VLA
             float filled[newHeight];
+#else
+            float *filled = (float *) malloc(newHeight * sizeof(float));
+#endif
             
             int count = 0;
             int index = 0;
@@ -160,7 +164,11 @@ public:
              * Calculate scaling numbers to scale the full height matrix
              * with the slice lines down to the original height (720p).
              */
+#ifdef SUPPORT_VLA
             float downScaling[height];
+#else
+            float *downScaling = (float *) malloc(height * sizeof(float));
+#endif
             
             float scaleFactor = (float) newHeight/height;
 //          printf("scale factor: %f\n", scaleFactor);
@@ -185,6 +193,10 @@ public:
 //              printf("%f at %d with weights %f and %f\n", m_mesh[i], i, (1-offset)*downScaling[i], offset*downScaling[i+1]);
             }
             
+#ifndef SUPPORT_VLA
+			free(downScaling);
+			free(filled);
+#endif
         } else {
             // Not a 720p file.
         }
