@@ -18,6 +18,7 @@
  */
 
 #include "frei0r.hpp"
+#include <algorithm>
 #include <iostream>
 
 //#define DEBUG
